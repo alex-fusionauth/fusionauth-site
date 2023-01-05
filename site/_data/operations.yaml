@@ -1,0 +1,7 @@
+- name: Logging In With a Magic Link
+  urlName: magic-link-login
+  contentFileName: magic-link-login.md
+- name: Logging In With Facebook
+  urlName: facebook-login
+  contentFileName: facebook-login.md
+
