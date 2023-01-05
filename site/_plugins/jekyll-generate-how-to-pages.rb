@@ -15,9 +15,9 @@ module Jekyll
       input_dir = "#{site.source}/_how-to-source/"
 
       techs.each do |tech|
-        puts "processing: " +tech['name']
+        #puts "processing: " +tech['name']
         operations.each do |operation|
-          puts "processing: " +operation['name']
+          #puts "processing: " +operation['name']
 
           file_name = build_file_name(tech,operation)
           title = build_title(tech,operation)
@@ -55,9 +55,9 @@ module Jekyll
     def get_header(title,tech,operation)
       header = <<-END
 ---
-layout: developer-container
-title: FusionAuth Customer License Agreement
-description: The FusionAuth Customer License Agreement
+layout: blog-post
+title: #{title}
+description: #{title}
 ---
 END
     end
