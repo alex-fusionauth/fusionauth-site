@@ -584,7 +584,7 @@
             </nav>
           </aside>
         </div>
-        <div class="col-xs-12 col-lg-9">
+        <div>
           <article>
             <div id="scroll-nav">
               <div><a href="#"><i class="fad fa-bars"></i></a></div>
@@ -617,6 +617,11 @@
               <div><a href="#"><i class="fad fa-chevron-circle-up"></i></a></div>
             </div>
           </article>
+        </div>
+        <div style="position: fixed;" class="col-xs-12 col-lg-2">
+          <aside>
+          {{ page.document | tocify_asciidoc }}
+          </aside>
         </div>
       </div>
     </div>
