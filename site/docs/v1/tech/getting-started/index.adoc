@@ -8,34 +8,85 @@ navcategory: getting-started
 :page-liquid:
 :sectnumlevels: 0
 
-== Introduction
+== Overview
 
-FusionAuth is a modern platform for Customer Identity and Access Management (CIAM). FusionAuth provides APIs and a responsive web user interface to support
-login, registration, localized email, multi-factor authentication, reporting and much more.
+FusionAuth is a modern platform for Customer Identity and Access Management (CIAM). FusionAuth provides APIs and a responsive web user interface to support login, registration, localized email, multi-factor authentication, reporting and much more.
 
-If you're looking for employee login or a replacement for Active Directory - you may be in the wrong place. While FusionAuth can be used for nearly any application, we do not offer native desktop integration and replacing Active Directory is not on our roadmap. However, if you're looking for a solution to manage end users that can perform at scale, then keep reading.
+If you're looking for employee login or a replacement for Active Directory, you may be in the wrong place. While FusionAuth can be used for nearly any application, we do not offer native desktop integration and replacing Active Directory is not on our roadmap.
 
-Here's a typical application login flow before FusionAuth.
+If you're looking for a solution to manage end users that can perform at scale, then keep reading.
+
+* <<Your App: Before and After>>
+* <<Why Use an Identity As a Service Provider>>
+* <<Adding Functionality>>
+** <<Login>>
+** <<Logout>>
+** <<Registration>>
+* <<Core Concepts>>
+** <<Users>>
+** <<Applications>>
+** <<Registrations>>
+** <<Tenants>>
+* <<More Information>>
+** <<Quick Start>>
+** <<Install Options>>
+** <<Create a User and Call an API>>
+
+
+== Your App: Before and After
+
+Here's a typical user login flow before FusionAuth. Though this references web pages, this flow is technology agnostic and could be in a mobile app, web app or single page application (SPA) written in any language.
 
 ++++
 {% plantuml source: _diagrams/docs/login-before.plantuml, alt: "Login before FusionAuth." %}
 ++++
 
-And here's the same application login flow when FusionAuth is introduced FusionAuth.
+And here's the same user login flow when FusionAuth is introduced.
 ++++
 {% plantuml source: _diagrams/docs/login-after.plantuml, alt: "Login with FusionAuth." %}
 ++++
+
+== Why Use an Identity As a Service Provider
+
+FusionAuth is an Identity as a Service provider (IDaaS). Why would you consider using a service like FusionAuth to store and manage your user data?
+
+++++
+{% capture intro %}
+  {% include docs/_fusionauth-intro.liquid %}
+{% endcapture %}
+{{ intro | markdownify }}
+++++
+
+== Adding Functionality
+
+How do you actually integrate FusionAuth with your appliation? Let's walk through three common pieces of functionality: login (also known as 'sign in'), logout (also known as 'sign out') and registration (also known as 'sign up').
+
+=== Login
+
+To add login, you need to:
+
+1. link:/docs/v1/tech/installation-guide/[Install FusionAuth locally] or use a cloud deployment (there's a link:/pricing?step=plan&hosting=basic-cloud[free trial]).
+1. Select an OIDC client library for your application and install it. Here's a https://oauth.net/code/[list of client libraries]. TODO should we grab the list and maintain it locally?
+1. Create an Application in FusionAuth representing your mobile app, web app or API.
+1. Use the Application information such as the client Id and secret to configure the OIDC client library.
+1.* Add a link to your application to send the user to FusionAuth.
+
+=== Logout
+
+=== Registration
 
 == Core Concepts
 
 Legacy identity technologies have complex hierarchy and cryptic terminology like realms, principals, subjects and distinguished names. In order to simplify something perceived to be complex, the best approach is to go back to the basics, to the atomic elements and throw everything else away.
 
-When we built FusionAuth we took the back to basics approach. We identified two atomic elements of identify, Users and Applications. Everyone has Users, and Users need to be authenticated to Applications. For this reason FusionAuth is built upon four core elements:
+When we built FusionAuth we took the back to basics approach. We identified two atomic elements of identify, Users and Applications. Everyone has Users, and Users need to be authenticated to Applications.
+
+FusionAuth is built upon four core elements:
 
 * Users - someone that can log into things
-* Applications - things that Users log into
-* Registrations - the connection between a User and an Application they have access to
-* Tenants - A way to logically isolate Applications, Users and Registrations
+* Applications - the things that Users log in to
+* Registrations - a connection between a User and an Application to which they have access
+* Tenants - a container logically isolating Applications, Users and Registrations
 
 === Users
 
@@ -55,23 +106,25 @@ Tenants are way to separate Users, Applications and Registrations into separate 
 
 For example, you might have two Tenants and inside both Tenants you might have an Application named `Web Based Payroll` and a User with the email address `john@piedpiper.com`. Each of these Users might have a Registration to the `Web Based Payroll` Application. And finally, each of these Users might have different passwords and data. link:/docs/v1/tech/core-concepts/tenants[Learn more.]
 
-== Getting Started
+== More Information
 
-
-First you will need to install and configure FusionAuth before starting your integration. Here are some links to get you started:
+You will need to install and configure FusionAuth before starting your integration. Here are some links to get you started:
 
 === Quick Start
+
 * link:/docs/v1/tech/5-minute-setup-guide[5-Minute Setup Guide]
 * link:/docs/v1/tech/tutorials/register-user-login-api[Register a User and Login]
 * link:/docs/v1/tech/guides/basic-registration-forms[Self-service Registration]
 * link:/docs/v1/tech/installation-guide/common-configuration[Common Configuration]
 
 === Install Options
+
 * link:/docs/v1/tech/installation-guide/fast-path[FastPath Install]
 * link:/docs/v1/tech/installation-guide/docker[Docker]
 * link:/docs/v1/tech/installation-guide/fusionauth-app[Package Installation]
 * link:/docs/v1/tech/installation-guide/[All Options]
 
-=== Create a User and call an API
+=== Create a User and Call an API
+
 * link:/docs/v1/tech/tutorials/register-user-login-api[Register a User and Login]
 * link:/docs/v1/tech/apis/[API Docs]
