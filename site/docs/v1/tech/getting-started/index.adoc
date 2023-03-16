@@ -27,10 +27,7 @@ If you're looking for a solution to manage end users that can perform at scale, 
 ** <<Applications>>
 ** <<Registrations>>
 ** <<Tenants>>
-* <<More Information>>
-** <<Quick Start>>
-** <<Install Options>>
-** <<Create a User and Call an API>>
+* <<Next Steps>>
 
 
 == Your App: Before and After
@@ -61,17 +58,38 @@ FusionAuth is an Identity as a Service provider (IDaaS). Why would you consider 
 
 How do you actually integrate FusionAuth with your appliation? Let's walk through three common pieces of functionality: login (also known as 'sign in'), logout (also known as 'sign out') and registration (also known as 'sign up').
 
+// uncomment and update when quickstarts page launches
+//If you want step by step detailed instructions, please visit our quickstarts page.
+
 === Login
 
 To add login, you need to:
 
 1. link:/docs/v1/tech/installation-guide/[Install FusionAuth locally] or use a cloud deployment (there's a link:/pricing?step=plan&hosting=basic-cloud[free trial]).
-1. Select an OIDC client library for your application and install it. Here's a https://oauth.net/code/[list of client libraries]. TODO should we grab the list and maintain it locally?
-1. Create an Application in FusionAuth representing your mobile app, web app or API.
-1. Use the Application information such as the client Id and secret to configure the OIDC client library.
-1.* Add a link to your application to send the user to FusionAuth.
+1. Select an OIDC or OAuth2 client library for your application and install it. Here's a https://oauth.net/code/[list of client libraries].
+1. Create an Application in FusionAuth representing your mobile app, web app or API. Navigate to [breadcrumb]#Applications -> Your Application -> OAuth#.
+ * Configure the redirect URL. The exact value depends on the OIDC client library you use. It'll may be called a redirect URI.
+ * Check the [uielement]#Authorization Code# in the [field]#Enabled grants# section.
+ * Save the Application.
+ * Edit it again and note the following:
+   * The [field]#Client Id#
+   * The [field]#Client Secret#
+1. Configure the OIDC client library with the Id and Secret.
+ * If using an OAuth2 client library, ensure you set the scope to `openid`.
+1. Add a login link to your application. When clicked or tapped, it will send the user to FusionAuth. The OIDC library may provide that.
+
+Here's an example of the Application [breadcrumb]#OAuth# tab.
+
+image::getting-started/initial-application-setup.png[The Application configuration screen.,width=1200]
+
+That's it. After the user successfully logs in to FusionAuth, the client library will store the user information for you.
 
 === Logout
+
+To add logout, you need to:
+
+1. 
+
 
 === Registration
 
@@ -106,25 +124,17 @@ Tenants are way to separate Users, Applications and Registrations into separate 
 
 For example, you might have two Tenants and inside both Tenants you might have an Application named `Web Based Payroll` and a User with the email address `john@piedpiper.com`. Each of these Users might have a Registration to the `Web Based Payroll` Application. And finally, each of these Users might have different passwords and data. link:/docs/v1/tech/core-concepts/tenants[Learn more.]
 
-== More Information
+== Next Steps
 
-You will need to install and configure FusionAuth before starting your integration. Here are some links to get you started:
+Now that you've seen how to add login, logout and registration to your application, as well as learned core concepts, dig deeper into the documentation.
 
-=== Quick Start
+* link:/docs/v1/tech/core-concepts/integration-points[Common integration points]
+* link:/docs/v1/tech/lambdas/jwt-populate[Customizing JWTs]
+* link:/docs/v1/tech/email-templates/[Sending and customizing emails]
+* link:/docs/v1/tech/identity-providers/[Configuring federated login with OIDC, SAML and social login providers like Google or Apple]
+* link:/docs/v1/tech/guides/multi-factor-authentication[Setting Up MFA/Two-Factor]
+* link:/docs/v1/tech/oauth/[Supported OAuth grants]
+* link:/docs/v1/tech/guides/single-sign-on[Single sign-on between applications]
+* link:/docs/v1/tech/apis/users[Managing user data with the User API]
+* link:/docs/v1/tech/premium-features/[FusionAuth Premium features]
 
-* link:/docs/v1/tech/5-minute-setup-guide[5-Minute Setup Guide]
-* link:/docs/v1/tech/tutorials/register-user-login-api[Register a User and Login]
-* link:/docs/v1/tech/guides/basic-registration-forms[Self-service Registration]
-* link:/docs/v1/tech/installation-guide/common-configuration[Common Configuration]
-
-=== Install Options
-
-* link:/docs/v1/tech/installation-guide/fast-path[FastPath Install]
-* link:/docs/v1/tech/installation-guide/docker[Docker]
-* link:/docs/v1/tech/installation-guide/fusionauth-app[Package Installation]
-* link:/docs/v1/tech/installation-guide/[All Options]
-
-=== Create a User and Call an API
-
-* link:/docs/v1/tech/tutorials/register-user-login-api[Register a User and Login]
-* link:/docs/v1/tech/apis/[API Docs]
